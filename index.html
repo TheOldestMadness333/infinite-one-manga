@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infinite One Comic</title>
+    <style>
+        :root {
+            --main-color: #ff3333;
+            --dark-color: #222;
+            --light-color: #f5f5f5;
+            --accent-color: #ff6666;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 1rem 0;
+            border-bottom: 4px solid var(--main-color);
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-accent {
+            color: var(--main-color);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 1.5rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--main-color);
+        }
+        
+        .hero {
+            padding: 4rem 0;
+            text-align: center;
+            background-color: var(--dark-color);
+            color: white;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--main-color);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        
+        .btn:hover {
+            background-color: var(--accent-color);
+        }
+        
+        .section {
+            padding: 4rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--main-color);
+            margin: 1rem auto 0;
+        }
+        
+        .chapters {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .chapter-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .chapter-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .chapter-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background-color: #ddd;
+        }
+        
+        .chapter-content {
+            padding: 1.5rem;
+        }
+        
+        .chapter-title {
+            margin-top: 0;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .chapter-date {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .upload-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--main-color);
+        }
+        
+        .donation-platforms {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .donation-platform {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .donation-platform:hover {
+            transform: translateY(-5px);
+        }
+        
+        .platform-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--main-color);
+        }
+        
+        .platform-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin: 1rem 0;
+            padding: 0;
+        }
+        
+        .footer-links li {
+            margin: 0 1rem;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--main-color);
+        }
+        
+        .social-links {
+            margin: 1rem 0;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 0.5rem;
+            transition: color 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: var(--main-color);
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .chapters {
+                grid-template-columns: 1fr;
+            }
+            
+            .donation-platforms {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">Infinite <span class="logo-accent">One</span></a>
+                <ul class="nav-links">
+                    <li><a href="#chapters">Chapters</a></li>
+                    <li><a href="#upload">Upload</a></li>
+                    <li><a href="#donate">Donate</a></li>
+                    <li><a href="#about">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="container">
+            <h1>Welcome to <span class="logo-accent">Infinite One</span></h1>
+            <p>Born to find the mysteries of his endless potential, Arhiet, named by his Demon God Master, crosses dimensions and realities to gain enough power to understand and become beyond the layers of linear time so he can understand his past.</p>
+            <a href="#chapters" class="btn">Read Latest Chapter</a>
+        </div>
+    </section>
+    
+    <section id="chapters" class="section">
+        <div class="container">
+            <h2 class="section-title">Latest Chapters</h2>
+            
+            <div class="chapters">
+                <div class="chapter-card">
+                    <img src="/api/placeholder/400/320" alt="Chapter cover" class="chapter-image">
+                    <div class="chapter-content">
+                        <h3 class="chapter-title">Chapter 1: The Beginning</h3>
+                        <div class="chapter-date">Posted on May 1, 2025</div>
+                        <p>The first step into the infinite worlds begins here. Follow our hero as they discover powers beyond imagination.</p>
+                        <a href="#" class="btn">Read Now</a>
+                    </div>
+                </div>
+                
+                <div class="chapter-card">
+                    <img src="/api/placeholder/400/320" alt="Chapter cover" class="chapter-image">
+                    <div class="chapter-content">
+                        <h3 class="chapter-title">Chapter 2: The Awakening</h3>
+                        <div class="chapter-date">Posted on May 8, 2025</div>
+                        <p>As new abilities emerge, the boundaries between realities begin to blur.</p>
+                        <a href="#" class="btn">Read Now</a>
+                    </div>
+                </div>
+                
+                <div class="chapter-card">
+                    <img src="/api/placeholder/400/320" alt="Chapter cover" class="chapter-image">
+                    <div class="chapter-content">
+                        <h3 class="chapter-title">Chapter 3: The Encounter</h3>
+                        <div class="chapter-date">Posted on May 15, 2025</div>
+                        <p>A mysterious figure appears with knowledge of the infinite worlds.</p>
+                        <a href="#" class="btn">Read Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="upload" class="section" style="background-color: #f0f0f0;">
+        <div class="container">
+            <h2 class="section-title">Upload New Chapter</h2>
+            
+            <form class="upload-form">
+                <div class="form-group">
+                    <label for="chapter-title">Chapter Title</label>
+                    <input type="text" id="chapter-title" class="form-control" placeholder="Enter chapter title">
+                </div>
+                
+                <div class="form-group">
+                    <label for="chapter-number">Chapter Number</label>
+                    <input type="number" id="chapter-number" class="form-control" placeholder="Enter chapter number">
+                </div>
+                
+                <div class="form-group">
+                    <label for="chapter-description">Chapter Description</label>
+                    <textarea id="chapter-description" class="form-control" rows="4" placeholder="Enter a brief description"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="chapter-cover">Chapter Cover Image</label>
+                    <input type="file" id="chapter-cover" class="form-control">
+                </div>
+                
+                <div class="form-group">
+                    <label for="chapter-file">Chapter File (PDF)</label>
+                    <input type="file" id="chapter-file" class="form-control">
+                </div>
+                
+                <button type="submit" class="btn">Upload Chapter</button>
+            </form>
+        </div>
+    </section>
+    
+    <section id="donate" class="section">
+        <div class="container">
+            <h2 class="section-title">Support Infinite One</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 3rem;">Your support helps keep this comic going. As a university student project, your donations go a long way in helping create new chapters and improve the quality of Infinite One. Choose your preferred platform to donate and help fund the next chapter of this infinite journey.</p>
+            
+            <div class="donation-platforms">
+                <div class="donation-platform">
+                    <div class="platform-icon">
+                        <i class="fa-brands fa-patreon"></i>
+                    </div>
+                    <h3 class="platform-name">Patreon</h3>
+                    <p>Become a patron and get exclusive behind-the-scenes content and early access.</p>
+                    <a href="#" class="btn">Support on Patreon</a>
+                </div>
+                
+                <div class="donation-platform">
+                    <div class="platform-icon">
+                        <i class="fa-brands fa-paypal"></i>
+                    </div>
+                    <h3 class="platform-name">PayPal</h3>
+                    <p>Make a one-time donation or set up recurring support.</p>
+                    <a href="#" class="btn">Donate via PayPal</a>
+                </div>
+                
+                <div class="donation-platform">
+                    <div class="platform-icon">
+                        <i class="fa-brands fa-ko-fi"></i>
+                    </div>
+                    <h3 class="platform-name">Ko-fi</h3>
+                    <p>Buy me a coffee to fuel the next chapter.</p>
+                    <a href="#" class="btn">Buy me a coffee</a>
+                </div>
+                
+                <div class="donation-platform">
+                    <div class="platform-icon">
+                        <i class="fa-solid fa-mug-hot"></i>
+                    </div>
+                    <h3 class="platform-name">Buy Me A Coffee</h3>
+                    <p>Support with a one-time donation.</p>
+                    <a href="#" class="btn">Buy Me A Coffee</a>
+                </div>
+                
+                <div class="donation-platform">
+                    <div class="platform-icon">
+                        <i class="fa-brands fa-stripe"></i>
+                    </div>
+                    <h3 class="platform-name">Stripe</h3>
+                    <p>Secure and easy payment processing.</p>
+                    <a href="#" class="btn">Donate via Stripe</a>
+                </div>
+                
+                <div class="donation-platform">
+                    <div class="platform-icon">
+                        <i class="fa-solid fa-coins"></i>
+                    </div>
+                    <h3 class="platform-name">Crypto</h3>
+                    <p>Donate using cryptocurrency.</p>
+                    <a href="#" class="btn">Donate Crypto</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="about" class="section" style="background-color: #f0f0f0;">
+        <div class="container">
+            <h2 class="section-title">About Infinite One</h2>
+            <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                <p>Infinite One is a comic series exploring the journey of Arhiet, who crosses dimensions and realities to gain enough power to understand and become beyond the layers of linear time so he can understand his past. Follow our protagonist as they navigate through endless worlds, each with their own rules and challenges.</p>
+                <p>Created with passion and dedication by a university student, this comic aims to push the boundaries of storytelling and visual art.</p>
+                <p>New chapters are released bi-weekly. Stay tuned and support the journey!</p>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <a href="#" class="logo">Infinite <span class="logo-accent">One</span></a>
+            
+            <ul class="footer-links">
+                <li><a href="#chapters">Chapters</a></li>
+                <li><a href="#upload">Upload</a></li>
+                <li><a href="#donate">Donate</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+            
+            <div class="social-links">
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-discord"></i></a>
+            </div>
+            
+            <p>&copy; 2025 Infinite One. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
